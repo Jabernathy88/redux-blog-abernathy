@@ -24,8 +24,8 @@ function fakeGetPosts() {
               name: "Strawberries"
             }
           ]
-        }),
-      1000
+        })
+        , 900 // timeout to test loading handler
     );
   });
 }
@@ -54,7 +54,7 @@ export function fetchPosts() {
 
 export const FETCH_POSTS_BEGIN = "FETCH_POSTS_BEGIN";
 export const FETCH_POSTS_SUCCESS = "FETCH_POSTS_SUCCESS";
-export const FETCH_POSTS_FAILURE = "FETCH_POSTS_FAILRE";
+export const FETCH_POSTS_FAILURE = "FETCH_POSTS_FAILURE";
 
 export const fetchPostsBegin = () => ({
   type: FETCH_POSTS_BEGIN
