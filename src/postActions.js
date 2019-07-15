@@ -4,36 +4,19 @@
 //     .then(res => res.json());
 // }
 
-function fakeGetPosts() {
-  return new Promise(resolve => {
-
-    setTimeout(
-      () => 
-        resolve({
-          posts: [
-            {
-              id: 0,
-              name: "Apple"
-            },
-            {
-              id: 1,
-              name: "Bananas"
-            },
-            {
-              id: 2,
-              name: "Strawberries"
-            }
-          ]
-        })
-        , 900 // timeout to test loading handler
-    );
-  });
+function fakeGetPosts(dispatch) {
+  return fetch(`https://jsonplaceholder.typicode.com/posts`)
+    .then(res => res.json())
+    .then(posts => {
+      console.log("I am posts:", posts)
+      return { posts }
+    })
 }
 
 export function fetchPosts() {
   return dispatch => {
     dispatch(fetchPostsBegin());
-    return fakeGetPosts()
+    return fakeGetPosts(dispatch)
     .then(json => {
       dispatch(fetchPostsSuccess(json.posts));
       return json.posts;

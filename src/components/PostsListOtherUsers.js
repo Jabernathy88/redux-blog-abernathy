@@ -26,7 +26,8 @@ export class PostsListOtherUsers extends Component {
         {posts && posts.map(post => (
           <div key={post.id}>
             <p><small>Post #{post.id}:</small></p>
-            <p><strong>{post.name}</strong></p>
+            <p><strong>{post.title}</strong></p>
+            <p>{post.body}</p>
           </div>
         ))}
       </div>
