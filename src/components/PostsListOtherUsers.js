@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../postActions';
 
-
 export class PostsListOtherUsers extends Component {
   componentDidMount() {
     if (this.props.dispatch) {
@@ -20,16 +19,34 @@ export class PostsListOtherUsers extends Component {
       return <div>Loading ...</div>;
     }
 
+    function returnAuthorName(postUserId) {
+      if (postUserId === 2) {
+        return "Ervin Howell"
+      } else if (postUserId === 3) {
+        return "Clementine Bauch"
+      } else {
+        return "Leanne Graham"
+      }
+    }
+    function returnVisiblePost(post) {
+      if (post.userId === 1) {
+        return null
+      } else {
+        return (
+          <div key={post.id} className="border my-1 p-2">
+            <div><small>By: {returnAuthorName(post.userId)}</small></div>
+            <h5><strong>{post.title}</strong></h5>
+            <div>{post.body}</div>
+          </div>
+        )
+      }
+    }
+
     return (
       <div className="posts-list-other-users">
-        Hello from Other Users Posts
-        {posts && posts.map(post => (
-          <div key={post.id}>
-            <p><small>Post #{post.id}:</small></p>
-            <p><strong>{post.title}</strong></p>
-            <p>{post.body}</p>
-          </div>
-        ))}
+        {posts && posts.map(post => {
+          return returnVisiblePost(post)
+        })}
       </div>
     )
   }

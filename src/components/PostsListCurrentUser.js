@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../userActions';
+import { fetchMyPosts } from '../myPostsActions';
 
 export class PostsListCurrentUser extends Component {
   componentDidMount() {
     if (this.props.dispatch) {
       this.props.dispatch(fetchUsers());
+      this.props.dispatch(fetchMyPosts());
+      console.log("I am left props:", this.props)
     }
   }
 
   render() {
-    const { error, loading, users } = this.props;
-
-    const currentUser = users[0]
+    const { error, loading, users, myPosts } = this.props;
+    let currentUser;
 
     if (error) {
       return <div>Error: {error.message}</div>
@@ -20,19 +22,20 @@ export class PostsListCurrentUser extends Component {
     if (loading) {
       return <div>Loading ...</div>;
     }
+    if (users) {
+      currentUser = users[0]
+    }
 
     return (
       <div className="posts-list-current-user">
-        Hello from Current User Posts
-        {users && users.map(user => (
-          <div key={user.id}>
-            <p><small>User #{user.id}:</small></p>
-            <p><strong>{user.name}</strong></p>
-          </div>
-        ))}
-        { // temp log
-          currentUser && console.log("I am current user:", currentUser)
-        }
+        {myPosts && myPosts.map(post => (
+            <div key={post.id} className="border my-1 p-2">
+              <div><small>By: {currentUser.name}</small></div>
+              <h5><strong>{post.title}</strong></h5>
+              <div>{post.body}</div>
+            </div>
+          )
+        )}
       </div>
     )
   }
@@ -40,6 +43,7 @@ export class PostsListCurrentUser extends Component {
 
 const mapStateToProps = state => ({
   users: state.users.items,
+  myPosts: state.myPosts.items,
   loading: state.users.loading,
   error: state.users.error
 })
