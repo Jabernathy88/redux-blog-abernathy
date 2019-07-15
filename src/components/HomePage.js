@@ -4,11 +4,9 @@ import ColumnRight from './ColumnRight';
 
 const HomePage = () => {
   return (
-    <div className="">
-      <div className="row py-3 px-0 m-0">
-        <ColumnLeft />
-        <ColumnRight />
-      </div>
+    <div className="row py-3 px-0 m-0">
+      <ColumnLeft />
+      <ColumnRight />
     </div>
   );
 };

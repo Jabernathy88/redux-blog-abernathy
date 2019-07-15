@@ -1,5 +1,5 @@
 /* root layout */
-html, body, #root, .app {
+html, body, #root, .provider, .app {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -9,7 +9,7 @@ html, body, #root, .app {
 html {
   font-family: 'Arial', 'Helvetica', 'Open Sans', sans-serif;
   font-size: 18px;
-  background: rgb(255,255,255);
+  background: #eceff1;
 }
 /* clear bootstrap defaults */
 div, header, footer, main {
@@ -19,4 +19,8 @@ div, header, footer, main {
 h1, h2, h3, h4, h5, h6, p {
   padding: 0;
   margin: 0;
+}
+/* neutral bg */
+.bg-blue-grey {
+  background: #eceff1;
 }

@@ -13,8 +13,7 @@
     transform: rotate(360deg);
   }
 }
-
-/* colors */
+/* neutral bg */
 .bg-blue-grey {
-  background-color: #eceff1;
+  background: #eceff1;
 }
